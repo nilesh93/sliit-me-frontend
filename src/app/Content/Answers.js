@@ -55,8 +55,8 @@ class Answers extends React.Component {
 
 
 
-                    <Tabs index={this.state.index} onChange={this.handleTabChange}>
-                        <Tab label='Final Answers'>
+                    <Tabs style={{display:'flex'}} index={this.state.index} onChange={this.handleTabChange}>
+                        <Tab style={{flex:1}} label='Final Answers'>
                             <Table
                                 model={UserModel}
                                 onSelect={this.handleSelect}
@@ -65,7 +65,7 @@ class Answers extends React.Component {
                                 source={this.state.source}
                                 />
                         </Tab>
-                        <Tab label='Mid Answers'>
+                        <Tab style={{flex:1,align:'center'}} label='Mid Answers'>
                             <Table
                                 model={UserModel}
                                 onSelect={this.handleSelect}
