@@ -17,15 +17,14 @@ class PastPaper extends React.Component {
     render() {
 
         return (
-            <Card style={{    width: '250px',margin: '10px'}}
-            showExpandableButton={true}>
+            <Card style={{    width: '250px',margin: '10px'}}>
                 <CardTitle
                     avatar="https://lh3.googleusercontent.com/_Ofe1l5kLKOZPctG4esWo4XYlbhnIQ5Lt34oRxSbsuQR_9Nr98oMdNM590iy9DSNHRsP=w300"
                     title="2010 Bundle"
                     subtitle="Updated on 2016 Mar 12"
                     />
                 <CardActions>
-                    <Button onClick={this.btnClick} style={styles.button} label="Download" />
+                    <Button onClick={this.props.func} style={styles.button} label="View" />
                 </CardActions>
             </Card>
         );

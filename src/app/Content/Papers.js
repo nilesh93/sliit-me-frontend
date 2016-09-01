@@ -10,21 +10,104 @@ import Avatar from 'react-toolbox/lib/avatar';
 import Chip from 'react-toolbox/lib/chip';
 import Search from '../Home/Search';
 import PastPaper from './PastPaper';
+import Dialog from 'react-toolbox/lib/dialog';
+import Table from 'react-toolbox/lib/table';
+import {Tab, Tabs} from 'react-toolbox';
 
+
+const users = [
+    { Name: 'Final year 2011 zip', Year: '2010', Intake: 'June Intake' },
+    { Name: 'Final year 2011 zip', Year: '2010', Intake: 'Normal Intake' },
+    { Name: 'Final year 2011 zip', Year: '2010', Intake: 'June Intake' }
+];
+
+
+const users2 = [
+    { Name: 'Mid term 2011 zip', Year: '2010', Intake: 'June Intake' },
+    { Name: 'Mid Term 2011 zip', Year: '2010', Intake: 'Normal Intake' },
+    { Name: 'Mid Term year 2011 zip', Year: '2010', Intake: 'June Intake' }
+];
+
+const UserModel = {
+    Name: { type: String },
+    Year: { type: String },
+    Intake: { type: String }
+};
 
 class Papers extends React.Component {
+    state = { selected: [], source: users, source2: users2, active: false, index: 1 };
 
+    handleChange = (row, key, value) => {
+        const source = this.state.source;
+        source[row][key] = value;
+        this.setState({ source });
+    };
+
+    handleTabChange = (index) => {
+        this.setState({ index });
+    };
+    handleSelect = (selected) => {
+        this.setState({ selected });
+    };
+
+    handleToggle = () => {
+        this.setState({ active: !this.state.active });
+    }
+
+    actions = [
+
+        { label: "Downlaod ", onClick: this.handleToggle },
+          { label: "Cancel", onClick: this.handleToggle },
+
+    ];
 
     render() {
 
         return (
             <div style={styles.main}>
+                <PastPaper func={this.handleToggle} style={styles.subjectItem}/>
                 <PastPaper style={styles.subjectItem}/>
                 <PastPaper style={styles.subjectItem}/>
                 <PastPaper style={styles.subjectItem}/>
                 <PastPaper style={styles.subjectItem}/>
                 <PastPaper style={styles.subjectItem}/>
-                <PastPaper style={styles.subjectItem}/>
+
+                <Dialog
+                    actions={this.actions}
+                    active={this.state.active}
+                    onEscKeyDown={this.handleToggle}
+                    onOverlayClick={this.handleToggle}
+
+                    >
+                    <Tabs index={this.state.index} onChange={this.handleTabChange}>
+                        <Tab label='Finals'>
+                            <Table
+                                model={UserModel}
+                                onChange={this.handleChange}
+                                onSelect={this.handleSelect}
+                                selectable
+                                multiSelectable
+                                selected={this.state.selected}
+                                source={this.state.source}
+                                />
+
+                        </Tab>
+                        <Tab label='Mid Term' onActive={this.handleActive}>
+
+                            <Table
+                                model={UserModel}
+                                onChange={this.handleChange}
+                                onSelect={this.handleSelect}
+                                selectable
+                                multiSelectable
+                                selected={this.state.selected}
+                                source={this.state.source2}
+                                />
+                        </Tab>
+
+                    </Tabs>
+
+                </Dialog>
 
             </div>
         );

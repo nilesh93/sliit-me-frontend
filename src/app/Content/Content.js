@@ -25,7 +25,7 @@ class Content extends React.Component {
 
                         <CardMedia
                             aspectRatio="wide"
-                            image="http://devfloat.net/wp-content/uploads/2015/08/thinker.jpg"
+                            image="http://i.imgur.com/58FymG1.jpg"
                             />
 
                         <CardTitle

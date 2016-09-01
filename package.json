@@ -78,6 +78,7 @@
   "license": "MIT",
   "homepage": "https://github.com/react-toolbox/react-toolbox-example#readme",
   "dependencies": {
-    "normalize.css": "^4.0.0"
+    "normalize.css": "^4.0.0",
+    "react-mdl": "^1.7.1"
   }
 }
