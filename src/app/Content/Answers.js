@@ -10,26 +10,27 @@ import Chip from 'react-toolbox/lib/chip';
 import Search from '../Home/Search';
 import PastPaper from './PastPaper';
 import Table from 'react-toolbox/lib/table';
+import {Tab, Tabs} from 'react-toolbox';
 
 
 const users = [
-    { Name: 'SPDC - JUNE INTAKE', Year: '2015', Subject: 'SPDC', Actions: <Button label="Download"/> },
-    { Name: 'SEP2 IT DECEMBER', Year: '2016', Subject: 'SEP2', Actions: <Button label="Download"/> }
+    { Name: 'SPDC - JUNE INTAKE', Intake: 'June Intake', Type: 'Final', Year: '2015', Subject: 'SPDC', Actions: <Button style={{ maxWidth: '0', padding: 0 }}  primary label="Download"/> },
 ];
 
 const UserModel = {
     Name: { type: String },
     Subject: { type: String },
-    Year: { type: Number },
 
-    Actions: { type: Button,style:{
-        backgroundColor : "#000"
-    }}
+    Year: { type: Number },
+    Intake: { type: Number },
+    Type: { type: Number },
+    Actions: { type: Button },
+
 };
 
 class Answers extends React.Component {
 
-    state = { selected: [], source: users };
+    state = { selected: [], source: users, index: 1 };
 
     handleChange = (row, key, value) => {
         const source = this.state.source;
@@ -41,21 +42,41 @@ class Answers extends React.Component {
         this.setState({ selected });
     };
 
+
+    handleTabChange = (index) => {
+        this.setState({ index });
+    };
     render() {
 
         return (
             <div style={styles.main}>
 
                 <Card >
-                    
-                    <Table
-                        model={UserModel}
 
-                        onSelect={this.handleSelect}
-                        editable = {false}
-                        selectable = {false}
-                        source={this.state.source}
-                        />
+
+
+                    <Tabs index={this.state.index} onChange={this.handleTabChange}>
+                        <Tab label='Final Answers'>
+                            <Table
+                                model={UserModel}
+                                onSelect={this.handleSelect}
+                                editable = {false}
+                                selectable = {false}
+                                source={this.state.source}
+                                />
+                        </Tab>
+                        <Tab label='Mid Answers'>
+                            <Table
+                                model={UserModel}
+                                onSelect={this.handleSelect}
+                                editable = {false}
+                                selectable = {false}
+                                source={this.state.source}
+                                />
+
+                        </Tab>
+
+                    </Tabs>
                 </Card>
             </div>
 

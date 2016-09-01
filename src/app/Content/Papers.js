@@ -47,7 +47,15 @@ class Papers extends React.Component {
         this.setState({ index });
     };
     handleSelect = (selected) => {
-        this.setState({ selected });
+        console.log(selected);
+        let initial = this.state.selected;
+
+          if(initial.indexOf(selected[0]) == -1){
+              initial.push(selected[0]);
+              console.log(initial);
+              
+          }
+        this.setState({ selected : initial});
     };
 
     handleToggle = () => {
@@ -79,26 +87,26 @@ class Papers extends React.Component {
                     onOverlayClick={this.handleToggle}
 
                     >
-                    <Tabs index={this.state.index} onChange={this.handleTabChange}>
-                        <Tab label='Finals'>
+                    <Tabs style={{display:'flex'}} index={this.state.index} onChange={this.handleTabChange}>
+                        <Tab style={{flex:1}} label='Finals'>
                             <Table
                                 model={UserModel}
                                 onChange={this.handleChange}
                                 onSelect={this.handleSelect}
-                                selectable
+                               
                                 multiSelectable
                                 selected={this.state.selected}
                                 source={this.state.source}
                                 />
 
                         </Tab>
-                        <Tab label='Mid Term' onActive={this.handleActive}>
+                        <Tab style={{flex:1}} label='Mid Term' >
 
                             <Table
+                                editable = {false}
                                 model={UserModel}
                                 onChange={this.handleChange}
                                 onSelect={this.handleSelect}
-                                selectable
                                 multiSelectable
                                 selected={this.state.selected}
                                 source={this.state.source2}
