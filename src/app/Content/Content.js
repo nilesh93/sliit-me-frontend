@@ -41,8 +41,8 @@ class Content extends React.Component {
 
                             <Link to={'/papers'}> <ListItem caption='Past Papers' leftIcon='send' />  </Link>
                             <Link to={'/answers'}>  <ListItem caption='Sample Answers' leftIcon='thumb_up' /> </Link>
-                            <ListItem caption='Tutorials & Assignments' leftIcon='info' />
-                            <ListItem caption='Lecturers In Charge' leftIcon='people' />
+                            <Link to={'/assignments'}>   <ListItem caption='Tutorials & Assignments' leftIcon='info' /> </Link>
+                            <Link to={'/lecturers'} ><ListItem caption='Lecturers In Charge' leftIcon='people' /> </Link>
                             <ListItem caption='Lecture Slides' leftIcon='view_carousel' />
                             <ListItem caption='Videos & Media' leftIcon='play_circle_filled' />
 
